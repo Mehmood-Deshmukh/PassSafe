@@ -24,7 +24,11 @@
 html,
 body {
     height: 100vh;
-    overflow: hidden;
+    overflow: scroll;
+}
+
+::-webkit-scrollbar{
+    display: none;
 }
 
 .container {
@@ -308,6 +312,7 @@ body {
     }
 
     .col {
+        height: 60vh;
         width: 100%;
         position: absolute;
         padding: 2rem;

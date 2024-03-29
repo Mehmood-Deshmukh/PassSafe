@@ -16,41 +16,57 @@ const Login = () => {
   const nav = useNavigate();
 
   const handleSignIn = async (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      try {
-        const response = await axios.post("http://localhost:5000/login", {
-          username: usernameSignIn,
-          password: passwordSignIn,
-        });
-        localStorage.setItem("token", response.data.token);
-        toast.success(`Welcome back, ${usernameSignIn}`);
-        nav("/password-manager");
-      } catch (err) {
-        toast.error(err.response.data.message);
-      }
-    }
+    e.preventDefault();
+    signIn();
   };
 
   const handleSignUp = async (e) => {
+    e.preventDefault();
+    signUp();
+  };
+
+  const handleKeyPressSignIn = (e) => {
     if (e.key === "Enter") {
-      e.preventDefault();
-      if (passwordSignUp !== confirmPassword) {
-        toast.error("Passwords do not match");
-        return;
-      }
-      try {
-        const response = await axios.post("http://localhost:5000/signup", {
-          username: usernameSignUp,
-          email,
-          password: passwordSignUp,
-        });
-        localStorage.setItem("token", response.data.token);
-        toast.success(`Welcome, ${usernameSignUp}`);
-        nav("/password-manager");
-      } catch (err) {
-        toast.error(err.response.data.message);
-      }
+      signIn();
+    }
+  };
+
+  const handleKeyPressSignUp = (e) => {
+    if (e.key === "Enter") {
+      signUp();
+    }
+  };
+
+  const signIn = async () => {
+    try {
+      const response = await axios.post("http://localhost:5000/login", {
+        username: usernameSignIn,
+        password: passwordSignIn,
+      });
+      localStorage.setItem("token", response.data.token);
+      toast.success(`Welcome back, ${usernameSignIn}`);
+      nav("/password-manager");
+    } catch (err) {
+      toast.error(err.response.data.message);
+    }
+  };
+
+  const signUp = async () => {
+    if (passwordSignUp !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+    try {
+      const response = await axios.post("http://localhost:5000/signup", {
+        username: usernameSignUp,
+        email,
+        password: passwordSignUp,
+      });
+      localStorage.setItem("token", response.data.token);
+      toast.success(`Welcome, ${usernameSignUp}`);
+      nav("/password-manager");
+    } catch (err) {
+      toast.error(err.response.data.message);
     }
   };
 
@@ -67,19 +83,19 @@ const Login = () => {
               <div className="form sign-up">
                 <div className="input-group">
                   <i className="bx bxs-user"></i>
-                  <input type="text" placeholder="Username" value={usernameSignUp} onChange={(e) => setUsernameSignUp(e.target.value)} onKeyPress={handleSignUp} />
+                  <input type="text" placeholder="Username" value={usernameSignUp} onChange={(e) => setUsernameSignUp(e.target.value)} />
                 </div>
                 <div className="input-group">
                   <i className="bx bx-mail-send"></i>
-                  <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} onKeyPress={handleSignUp} />
+                  <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className="input-group">
                   <i className="bx bxs-lock-alt"></i>
-                  <input type="password" placeholder="Password" value={passwordSignUp} onChange={(e) => setPasswordSignUp(e.target.value)} onKeyPress={handleSignUp} />
+                  <input type="password" placeholder="Password" value={passwordSignUp} onChange={(e) => setPasswordSignUp(e.target.value)} />
                 </div>
                 <div className="input-group">
                   <i className="bx bxs-lock-alt"></i>
-                  <input type="password" placeholder="Confirm password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} onKeyPress={handleSignUp} />
+                  <input type="password" placeholder="Confirm password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} onKeyDown={handleKeyPressSignUp}/>
                 </div>
                 <button onClick={handleSignUp}>Sign up</button>
                 <p>
@@ -94,11 +110,11 @@ const Login = () => {
               <div className="form sign-in">
                 <div className="input-group">
                   <i className="bx bxs-user"></i>
-                  <input type="text" placeholder="Username" value={usernameSignIn} onChange={(e) => setUsernameSignIn(e.target.value)} onKeyPress={handleSignIn} />
+                  <input type="text" placeholder="Username" value={usernameSignIn} onChange={(e) => setUsernameSignIn(e.target.value)} />
                 </div>
                 <div className="input-group">
                   <i className="bx bxs-lock-alt"></i>
-                  <input type="password" placeholder="Password" value={passwordSignIn} onChange={(e) => setPasswordSignIn(e.target.value)} onKeyPress={handleSignIn} />
+                  <input type="password" placeholder="Password" value={passwordSignIn} onChange={(e) => setPasswordSignIn(e.target.value)} onKeyDown={handleKeyPressSignIn} />
                 </div>
                 <button onClick={handleSignIn}>Sign in</button>
                 <p>
