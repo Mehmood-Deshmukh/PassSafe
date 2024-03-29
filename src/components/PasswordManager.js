@@ -3,6 +3,7 @@ import axios from "axios";
 
 const PasswordManager = () => {
   const [website, setWebsite] = useState("");
+  const [password, setPassword] = useState(""); // New state for password input field
   const [passwordLength, setPasswordLength] = useState(12);
   const [includeUpperCase, setIncludeUpperCase] = useState(true);
   const [includeNumbers, setIncludeNumbers] = useState(true);
@@ -13,6 +14,7 @@ const PasswordManager = () => {
     newPassword: "",
     editing: false,
   });
+
   useEffect(() => {
     getPasswords();
   }, []);
@@ -50,10 +52,29 @@ const PasswordManager = () => {
         }
       );
       const newPassword = response.data.password;
-      setPasswords([...passwords, { website: website, password: newPassword }]);
-      setWebsite("");
+      setPassword(newPassword); // Set generated password in the password state
     } catch (error) {
       console.error("Error generating password:", error);
+    }
+  };
+
+  const handleAddPassword = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.post("http://localhost:5000/passwords", {
+        website,
+        password,
+      },
+      {
+        headers: {
+          Authorization: token,
+        },
+      });
+      setPasswords([...passwords, { website, password }]);
+      setWebsite("");
+      setPassword("");
+    } catch (error) {
+      console.error("Error adding password:", error);
     }
   };
 
@@ -70,6 +91,7 @@ const PasswordManager = () => {
       console.error("Error deleting password:", error);
     }
   };
+
   const handleEdit = (passwordId, currentPassword) => {
     setEditPassword({
       id: passwordId,
@@ -119,6 +141,12 @@ const PasswordManager = () => {
           value={website}
           onChange={(e) => setWebsite(e.target.value)}
         />
+        <input
+          type="text"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <div>
           <label>
             Password Length:
@@ -162,6 +190,7 @@ const PasswordManager = () => {
           </label>
         </div>
         <button onClick={generatePassword}>Generate Password</button>
+        <button onClick={handleAddPassword}>Add Password</button>
       </div>
       <div>
         <h3>Passwords:</h3>

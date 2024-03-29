@@ -82,14 +82,8 @@ app.get('/logout', verifyToken, (req, res) => {
 
 app.post('/generate-password', verifyToken, async (req, res) => {
   try {
-    const { website, length, includeUpperCase, includeNumbers, includeSymbols } = req.body;
+    const { length, includeUpperCase, includeNumbers, includeSymbols } = req.body;
 
-    const existingPassword = await Password.findOne({ userId: req.user, website });
-    if (existingPassword) {
-      return res.status(400).json({ message: 'Website already exists' });
-    }
-
-    
     let charset = 'abcdefghijklmnopqrstuvwxyz';
     if (includeUpperCase) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     if (includeNumbers) charset += '0123456789';
@@ -101,6 +95,22 @@ app.post('/generate-password', verifyToken, async (req, res) => {
       password += charset[randomIndex];
     }
 
+    res.json({ password });
+  } catch (error) {
+    console.error('Error generating password:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+app.post('/passwords', verifyToken, async (req, res) => {
+  try {
+    const { website, password } = req.body;
+
+    const existingPassword = await Password.findOne({ userId: req.user, website });
+    if (existingPassword) {
+      return res.status(400).json({ message: 'Website already exists' });
+    }
+
     const userId = req.user;
     const newPassword = new Password({
       userId,
@@ -109,12 +119,13 @@ app.post('/generate-password', verifyToken, async (req, res) => {
     });
 
     await newPassword.save();
-    res.json({ password });
+    res.status(201).json({ message: 'Password added successfully' });
   } catch (error) {
-    console.error('Error generating password:', error);
+    console.error('Error adding password:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
 
 app.get('/passwords', verifyToken, async (req, res) => {
   try {
