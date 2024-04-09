@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# PassSafe
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+passSafe is a simple password management application built using MERN stack (MongoDB, Express.js, React.js, Node.js). It allows users to securely store and manage their passwords for various websites and services.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- User authentication: Sign up and login with JWT (JSON Web Tokens) authentication.
+- Password generation: Generate strong and customizable passwords for different websites.
+- Password management: View, add, edit, and delete passwords for various websites.
+- Secure storage: All passwords are stored securely and associated with the user account.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- MongoDB: NoSQL database for storing user data and passwords.
+- Express.js: Backend framework for building RESTful APIs.
+- React.js: Frontend library for building user interfaces.
+- Node.js: JavaScript runtime environment for running the server-side code.
+- JWT (JSON Web Tokens): Authentication mechanism for user login and authorization.
+- bcrypt: Password hashing algorithm for secure password storage.
+- Axios: Promise-based HTTP client for making API requests.
+  
+## Deployed on
+- [vercel](https://pass-safe-v1.vercel.app/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Requirements
+-   node
 
-### `npm test`
+### Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repo
 
-### `npm run build`
+    ```
+    git clone https://github.com/Mehmood-Deshmukh/PassSafe
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Install NPM packages
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```
+    npm install
+    ```
+3. Start
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    ```
+    npm run dev
+    ```
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Contributing
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+-   If you have suggestions for adding or removing features, feel free to [open an issue](https://github.com/Mehmood-Deshmukh/PassSafe/issues/new) to discuss it, or directly create a pull request with necessary changes.
+-   Create individual PR for each suggestion.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Creating A Pull Request
 
-## Learn More
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## About the Developer
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Cinesphere is developed by **Mehmood Deshmukh**
 
-### Code Splitting
+### Connect with Me
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- LinkedIn: [Mehmood Deshmukh](https://www.linkedin.com/in/mehmood-deshmukh-93533a2a7/)
+- GitHub: [Mehmood-Deshmukh](https://github.com/Mehmood-Deshmukh)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feel free to reach out for collaboration, feedback, or just to say hi!
