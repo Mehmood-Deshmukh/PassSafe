@@ -3,6 +3,7 @@ import axios from "axios";
 import "./PasswordManager.css";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 const PasswordManager = () => {
   const [website, setWebsite] = useState("");
@@ -20,10 +21,18 @@ const PasswordManager = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedPasswordId, setSelectedPasswordId] = useState(null);
-
+  const nav = useNavigate();
   useEffect(() => {
-    getPasswords();
+    if (!isLoggedIn()) {
+      nav("/"); 
+    } else {
+      getPasswords();
+    }
   }, []);
+
+  const isLoggedIn = () => {
+    return !!localStorage.getItem("token");
+  };
 
   const getPasswords = async () => {
     try {
@@ -155,9 +164,20 @@ const PasswordManager = () => {
     setShowDeleteModal(false);
   };
 
+
+  const handleLogout = () =>{
+    localStorage.removeItem("token");
+    toast.success("Succesfully Logged out!");
+    nav('/');
+  }
+
   return (
     <div className="manager-container">
+      <div className="header">
+
       <h2 className="heading">PassSafe</h2>
+      <button className="logout-btn" onClick={handleLogout}>Logout</button>
+      </div>
       <div className="form-container">
         <div className="password-form-wrapper">
           <div className="password-form">
@@ -229,7 +249,7 @@ const PasswordManager = () => {
         </div>
       </div>
       <div className="password-container">
-        <h3>Passwords:</h3>
+        <h3 className="heading">Passwords:</h3>
         <table>
           <thead>
             <tr>
