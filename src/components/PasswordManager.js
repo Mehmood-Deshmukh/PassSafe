@@ -37,7 +37,7 @@ const PasswordManager = () => {
   const getPasswords = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:5000/passwords", {
+      const response = await axios.get("https://pass-safe-backend.vercel.app/passwords", {
         headers: {
           Authorization: token,
         },
@@ -53,7 +53,7 @@ const PasswordManager = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:5000/generate-password",
+        "https://pass-safe-backend.vercel.app/generate-password",
         {
           length: passwordLength,
           includeUpperCase,
@@ -79,7 +79,7 @@ const PasswordManager = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        "http://localhost:5000/passwords",
+        "https://pass-safe-backend.vercel.app/passwords",
         {
           website,
           password,
@@ -103,7 +103,7 @@ const PasswordManager = () => {
   const handleDelete = async (passwordId) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/passwords/${passwordId}`, {
+      await axios.delete(`https://pass-safe-backend.vercel.app/passwords/${passwordId}`, {
         headers: {
           Authorization: token,
         },
@@ -136,7 +136,7 @@ const PasswordManager = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:5000/passwords/${editPassword.id}`,
+        `https://pass-safe-backend.vercel.app/passwords/${editPassword.id}`,
         {
           newPassword: editPassword.newPassword,
         },

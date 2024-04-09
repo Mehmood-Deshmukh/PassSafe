@@ -6,12 +6,14 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 const app = express();
+const MongoURL = process.env.MongoURL;
 const PORT = process.env.PORT || 5000;
+const JWT_SECRET = process.env.JWT_SECRET;
 
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect(process.env.MongoURL, {
+mongoose.connect(MongoURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -24,7 +26,6 @@ db.on("connected", () => {
 const User = require('./models/User');
 const Password = require('./models/Password');
 
-const JWT_SECRET = 'your-secret-key';
 
 const verifyToken = (req, res, next) => {
   const token = req.headers['authorization'];

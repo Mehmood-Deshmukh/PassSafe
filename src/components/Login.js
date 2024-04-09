@@ -39,7 +39,7 @@ const Login = () => {
 
   const signIn = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/login", {
+      const response = await axios.post("https://pass-safe-backend.vercel.app/login", {
         username: usernameSignIn,
         password: passwordSignIn,
       });
@@ -57,7 +57,7 @@ const Login = () => {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:5000/signup", {
+      const response = await axios.post("https://pass-safe-backend.vercel.app/signup", {
         username: usernameSignUp,
         email,
         password: passwordSignUp,
