@@ -293,10 +293,6 @@ body {
         right: 0;
     }
 
-    /* .container.sign-in .col.sign-up {
-        transform: translateY(100%);
-    } */
-
     .container.sign-in .col.sign-in,
     .container.sign-up .col.sign-up {
         transform: translateY(0);
