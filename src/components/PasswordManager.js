@@ -196,7 +196,7 @@ const PasswordManager = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <div style={{display:"flex"}}>
+              <div className="parameters">
                 <div className="form-input-group">
                   <label>Password Length:</label>
                   <input
@@ -241,7 +241,7 @@ const PasswordManager = () => {
                 </div>
               </div>
             </div>
-            <div>
+            <div className="form-btns">
               <button onClick={generatePassword}>Generate Password</button>
               <button onClick={handleAddPassword}>Add Password</button>
             </div>
@@ -289,9 +289,6 @@ const PasswordManager = () => {
       {showEditModal && (
         <div className="modal">
           <div className="modal-content">
-            <span className="close" onClick={cancelEdit}>
-              &times;
-            </span>
             <h2>Edit Password</h2>
             <input
               type="text"
@@ -317,9 +314,6 @@ const PasswordManager = () => {
       {showDeleteModal && (
         <div className="modal">
           <div className="modal-content">
-            <span className="close" onClick={closeDeleteModal}>
-              &times;
-            </span>
             <h2>Delete Password</h2>
             <p>Are you sure you want to delete this password?</p>
             <div className="button-container">
