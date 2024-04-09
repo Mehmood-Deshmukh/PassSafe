@@ -274,7 +274,7 @@ const PasswordManager = () => {
                       Edit
                     </button>
                     <button
-                      onClick={() => setShowDeleteModal(true)}
+                      onClick={() => {setShowDeleteModal(true);setSelectedPasswordId(password._id)}}
                       className="table-buttons"
                     >
                       Delete
