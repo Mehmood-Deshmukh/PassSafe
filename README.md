@@ -62,7 +62,7 @@ Contributions are what make the open source community such an amazing place to b
 
 ## About the Developer
 
-Cinesphere is developed by **Mehmood Deshmukh**
+PassSafe is developed by **Mehmood Deshmukh**
 
 ### Connect with Me
 
